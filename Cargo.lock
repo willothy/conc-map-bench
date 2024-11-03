@@ -127,6 +127,7 @@ checksum = "79296716171880943b8470b5f8d03aa55eb2e645a4874bdbb28adb49162e012c"
 [[package]]
 name = "bustle"
 version = "0.5.1"
+source = "git+https://github.com/willothy/bustle#e6e55960798420dbafe3b497e9f8c35727ef424f"
 dependencies = [
  "rand 0.8.5",
  "scopeguard",
@@ -1685,6 +1686,7 @@ checksum = "53a85b86a771b1c87058196170769dd264f66c0782acf1ae6cc51bfd64b39082"
 [[package]]
 name = "whirlwind"
 version = "0.1.0-rc1"
+source = "git+https://github.com/fortress-build/whirlwind#1d51202687c710c8fc441bb3cb9d201530956250"
 dependencies = [
  "crossbeam-utils 0.8.20 (registry+https://github.com/rust-lang/crates.io-index)",
  "hashbrown",

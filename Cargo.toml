@@ -6,7 +6,7 @@ edition = "2018"
 publish = false
 
 [dependencies]
-bustle = { path = "../bustle" }
+bustle = { git = "https://github.com/willothy/bustle" }
 tracing-subscriber = "0.3.17"
 num_cpus = "1.16.0"
 ahash = "0.8.3"
@@ -25,7 +25,7 @@ csv = "1.2.2"
 serde = { version = "1.0.185", features = ["derive"] }
 plotters = "0.3.5"
 scc = "2.0.3"
-whirlwind = { path = "../whirlwind" }
+whirlwind = { git = "https://github.com/fortress-build/whirlwind" }
 futures = "0.3.31"
 tokio = { version = "1.41.0", features = ["full"] }
 
