@@ -51,23 +51,23 @@ where
 {
     type Key = K;
 
-    fn get(&mut self, key: &Self::Key) -> bool {
+    async fn get(&mut self, key: &Self::Key) -> bool {
         self.rd.get_one(key).is_some()
     }
 
-    fn insert(&mut self, key: &Self::Key) -> bool {
+    async fn insert(&mut self, key: &Self::Key) -> bool {
         let prev = self.rd.get_one(key).is_none();
         self.wr.lock().insert(*key, 0).refresh();
         prev
     }
 
-    fn remove(&mut self, key: &Self::Key) -> bool {
+    async fn remove(&mut self, key: &Self::Key) -> bool {
         let prev = self.rd.get_one(key).is_some();
         self.wr.lock().empty(*key).refresh();
         prev
     }
 
-    fn update(&mut self, key: &Self::Key) -> bool {
+    async fn update(&mut self, key: &Self::Key) -> bool {
         let val = match self.rd.get_one(key) {
             Some(val) => *val + 1,
             None => return false,

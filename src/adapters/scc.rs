@@ -37,19 +37,19 @@ where
 {
     type Key = K;
 
-    fn get(&mut self, key: &Self::Key) -> bool {
+    async fn get(&mut self, key: &Self::Key) -> bool {
         self.0.read(key, |_, v| *v).is_some()
     }
 
-    fn insert(&mut self, key: &Self::Key) -> bool {
+    async fn insert(&mut self, key: &Self::Key) -> bool {
         self.0.insert(*key, 0).is_ok()
     }
 
-    fn remove(&mut self, key: &Self::Key) -> bool {
+    async fn remove(&mut self, key: &Self::Key) -> bool {
         self.0.remove(key).is_some()
     }
 
-    fn update(&mut self, key: &Self::Key) -> bool {
+    async fn update(&mut self, key: &Self::Key) -> bool {
         match self.0.entry(*key) {
             Entry::Occupied(mut v) => {
                 *v.get_mut() += 1;

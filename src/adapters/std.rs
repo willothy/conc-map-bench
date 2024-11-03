@@ -37,19 +37,19 @@ where
 {
     type Key = K;
 
-    fn get(&mut self, key: &Self::Key) -> bool {
+    async fn get(&mut self, key: &Self::Key) -> bool {
         self.0.read().get(key).is_some()
     }
 
-    fn insert(&mut self, key: &Self::Key) -> bool {
+    async fn insert(&mut self, key: &Self::Key) -> bool {
         self.0.write().insert(*key, 0).is_none()
     }
 
-    fn remove(&mut self, key: &Self::Key) -> bool {
+    async fn remove(&mut self, key: &Self::Key) -> bool {
         self.0.write().remove(key).is_some()
     }
 
-    fn update(&mut self, key: &Self::Key) -> bool {
+    async fn update(&mut self, key: &Self::Key) -> bool {
         let mut map = self.0.write();
         map.get_mut(key).map(|v| *v += 1).is_some()
     }
@@ -84,19 +84,19 @@ where
 {
     type Key = K;
 
-    fn get(&mut self, key: &Self::Key) -> bool {
+    async fn get(&mut self, key: &Self::Key) -> bool {
         self.0.read().unwrap().get(key).is_some()
     }
 
-    fn insert(&mut self, key: &Self::Key) -> bool {
+    async fn insert(&mut self, key: &Self::Key) -> bool {
         self.0.write().unwrap().insert(*key, 0).is_none()
     }
 
-    fn remove(&mut self, key: &Self::Key) -> bool {
+    async fn remove(&mut self, key: &Self::Key) -> bool {
         self.0.write().unwrap().remove(key).is_some()
     }
 
-    fn update(&mut self, key: &Self::Key) -> bool {
+    async fn update(&mut self, key: &Self::Key) -> bool {
         self.0
             .write()
             .unwrap()

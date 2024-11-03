@@ -29,22 +29,22 @@ where
 {
     type Key = K;
 
-    fn get(&mut self, key: &Self::Key) -> bool {
+    async fn get(&mut self, key: &Self::Key) -> bool {
         self.0.get(key).is_some()
     }
 
-    fn insert(&mut self, key: &Self::Key) -> bool {
+    async fn insert(&mut self, key: &Self::Key) -> bool {
         let map = &mut self.0;
         let prev = map.get(key).is_none();
         map.insert(*key, Mutex::new(0));
         prev
     }
 
-    fn remove(&mut self, key: &Self::Key) -> bool {
+    async fn remove(&mut self, key: &Self::Key) -> bool {
         self.0.remove(key).is_some()
     }
 
-    fn update(&mut self, key: &Self::Key) -> bool {
+    async fn update(&mut self, key: &Self::Key) -> bool {
         self.0
             .get(key)
             .map(|e| {

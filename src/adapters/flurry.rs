@@ -39,19 +39,19 @@ where
 {
     type Key = K;
 
-    fn get(&mut self, key: &Self::Key) -> bool {
+    async fn get(&mut self, key: &Self::Key) -> bool {
         self.0.pin().get(key).is_some()
     }
 
-    fn insert(&mut self, key: &Self::Key) -> bool {
+    async fn insert(&mut self, key: &Self::Key) -> bool {
         self.0.pin().insert(*key, 0).is_none()
     }
 
-    fn remove(&mut self, key: &Self::Key) -> bool {
+    async fn remove(&mut self, key: &Self::Key) -> bool {
         self.0.pin().remove(key).is_some()
     }
 
-    fn update(&mut self, key: &Self::Key) -> bool {
+    async fn update(&mut self, key: &Self::Key) -> bool {
         self.0
             .pin()
             .compute_if_present(key, |_, v| Some(v + 1))
