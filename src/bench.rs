@@ -114,8 +114,8 @@ where
     H: Default + Clone + Send + Sync + BuildHasher + 'static,
 {
     case::<StdRwLockStdHashMapTable<u64, H>>("std::sync::RwLock<StdHashMap>", options, h).await;
-    case::<ParkingLotRwLockStdHashMapTable<u64, H>>("parking_lot::RwLock<StdHashMap>", options, h)
-        .await;
+    // case::<ParkingLotRwLockStdHashMapTable<u64, H>>("parking_lot::RwLock<StdHashMap>", options, h)
+    //     .await;
     case::<WhirlwindShardedMapTable<u64, H>>("Whirlwind", options, h).await;
     // case::<AsyncDashMapTable<u64, H>>("AsyncDashMap", options, h).await;
     case::<DashMapTable<u64, H>>("DashMap", options, h).await;
